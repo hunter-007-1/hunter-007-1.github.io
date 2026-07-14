@@ -1,0 +1,533 @@
+/* 自定义导航栏样式：在顶部透明状态下，为导航栏的所有文字和图标添加阴影，保障可读性 */
+#page-header:not(.nav-fixed) #nav a,
+#page-header:not(.nav-fixed) #nav .site-page,
+#page-header:not(.nav-fixed) #nav #site-name,
+#page-header:not(.nav-fixed) #nav #search-button span,
+#page-header:not(.nav-fixed) #nav #toggle-menu i,
+#page-header:not(.nav-fixed) #nav .menus_items .menus_item a {
+  text-shadow: 0 2px 6px rgba(0, 0, 0, 0.9), 0 0 10px rgba(0, 0, 0, 0.6) !important;
+  color: #ffffff !important;
+}
+
+/* 导航栏背景毛玻璃微调，增加层次感 */
+#page-header:not(.nav-fixed) #nav {
+  background: rgba(0, 0, 0, 0.15) !important;
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+}
+
+/* 博客主标题与打字机副标题文字阴影，防止在明亮背景图下看不清 */
+#site-info #site-title,
+#site-info #site-subtitle,
+#site-info #subtitle {
+  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.8), 0 0 15px rgba(0, 0, 0, 0.5) !important;
+  color: #ffffff !important;
+}
+
+/* =======================================================
+   新增优化包 1: 全局卡片半透明毛玻璃特效与悬浮交互微动
+   ======================================================= */
+
+/* 亮色模式下卡片毛玻璃效果 */
+.card-widget, 
+.recent-post-item, 
+#content-inner > #page, 
+#content-inner > #post,
+#content-inner > #archive,
+#content-inner > #tag-cloud {
+  background: rgba(255, 255, 255, 0.82) !important;
+  backdrop-filter: blur(8px) !important;
+  -webkit-backdrop-filter: blur(8px) !important;
+  border: 1px solid rgba(255, 255, 255, 0.3) !important;
+  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.08) !important;
+  border-radius: 12px !important;
+  transition: all 0.3s ease-in-out !important;
+}
+
+/* 暗色模式下卡片毛玻璃效果 */
+[data-theme='dark'] .card-widget, 
+[data-theme='dark'] .recent-post-item, 
+[data-theme='dark'] #content-inner > #page, 
+[data-theme='dark'] #content-inner > #post,
+[data-theme='dark'] #content-inner > #archive,
+[data-theme='dark'] #content-inner > #tag-cloud {
+  background: rgba(20, 20, 20, 0.72) !important;
+  backdrop-filter: blur(8px) !important;
+  -webkit-backdrop-filter: blur(8px) !important;
+  border: 1px solid rgba(255, 255, 255, 0.05) !important;
+  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.3) !important;
+}
+
+/* 卡片悬浮微动交互反馈 */
+.card-widget:hover, 
+.recent-post-item:hover,
+#content-inner > #page:hover,
+#content-inner > #post:hover {
+  border: 1px solid rgba(73, 177, 245, 0.6) !important; /* 契合主题蓝色 */
+  box-shadow: 0 8px 32px 0 rgba(73, 177, 245, 0.18) !important;
+  transform: translateY(-3px);
+}
+
+/* =======================================================
+   新增优化包 2: 自定义全局浏览器极简滚动条
+   ======================================================= */
+html::-webkit-scrollbar {
+  display: block !important; /* 强制启用 WebKit 滚动条 */
+}
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+::-webkit-scrollbar-track {
+  background: rgba(0, 0, 0, 0.05);
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb {
+  background: #49B1F5; /* 博客主题蓝 */
+  border-radius: 4px;
+  transition: all 0.2s ease-in-out;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #FF7242; /* Hover 为主题橙色 */
+}
+
+/* =======================================================
+   新增优化包 3: 看板娘位置微调，避免与 APlayer 重叠
+   ======================================================= */
+#waifu {
+  left: auto !important;
+  right: 20px !important; /* 靠右下角展示 */
+  bottom: 0px !important;
+}
+
+/* =======================================================
+   新增优化包 4: APlayer 底部悬浮二次元胶囊舱重构与视觉特效
+   ======================================================= */
+
+/* 入场淡入淡出动画 */
+@keyframes slideInUp {
+  from {
+    transform: translate(-50%, 40px);
+    opacity: 0;
+  }
+  to {
+    transform: translate(-50%, 0);
+    opacity: 1;
+  }
+}
+
+/* 呼吸起伏动效 */
+@keyframes bobbing {
+  0% { transform: translate(-50%, 0); }
+  50% { transform: translate(-50%, -4px); }
+  100% { transform: translate(-50%, 0); }
+}
+
+/* 唱片旋转动画 */
+@keyframes rotateCover {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+/* 唱片封面入场动画 */
+@keyframes picFadeIn {
+  from { opacity: 0; transform: scale(0.9); }
+  to { opacity: 1; transform: scale(1); }
+}
+
+/* 播放器主体：悬浮在底部正中，二次元透白毛玻璃，大圆角 */
+.aplayer.aplayer-fixed {
+  left: 50% !important;
+  transform: translateX(-50%) !important;
+  bottom: 20px !important;
+  width: 540px !important;
+  max-width: calc(100% - 40px) !important;
+  height: 76px !important;
+  border-radius: 38px !important; /* 完美半圆圆角 */
+  background: rgba(255, 255, 255, 0.38) !important; /* 38% 透明度 */
+  backdrop-filter: blur(16px) !important;
+  -webkit-backdrop-filter: blur(16px) !important;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05), 0 16px 32px rgba(0, 0, 0, 0.1) !important; /* 分层柔和投影 */
+  border: 1.5px solid rgba(255, 255, 255, 0.35) !important;
+  overflow: visible !important; /* 允许气泡向上溢出 */
+  animation: slideInUp 0.8s cubic-bezier(0.25, 1, 0.5, 1) forwards, bobbing 6s infinite ease-in-out 0.8s !important;
+  transition: border-color 0.3s, box-shadow 0.3s !important;
+}
+
+/* 悬浮发光渐变反馈 */
+.aplayer.aplayer-fixed:hover {
+  border-color: rgba(161, 196, 253, 0.6) !important;
+  box-shadow: 0 4px 12px rgba(161, 196, 253, 0.1), 0 16px 32px rgba(161, 196, 253, 0.2) !important;
+}
+
+/* 隐藏侧边突兀的拉伸控制块 */
+.aplayer.aplayer-fixed .aplayer-miniswitcher {
+  display: none !important;
+}
+
+/* 内部结构高度与切边对齐 */
+.aplayer.aplayer-fixed .aplayer-body {
+  height: 100% !important;
+  background: transparent !important;
+  border-radius: 38px !important;
+  overflow: hidden !important;
+  display: flex !important;
+  align-items: center !important;
+}
+
+/* 1. 专辑封面区域 */
+.aplayer.aplayer-fixed .aplayer-pic {
+  width: 76px !important;
+  height: 76px !important;
+  border-radius: 12px !important; /* 默认轻微圆角 */
+  border: 1.5px solid rgba(255, 255, 255, 0.6) !important;
+  box-shadow: 0 0 8px rgba(255, 255, 255, 0.4) !important;
+  animation: picFadeIn 0.8s ease-in-out forwards !important;
+  transition: border-radius 0.6s cubic-bezier(0.4, 0, 0.2, 1), transform 0.6s ease !important;
+  z-index: 2 !important;
+}
+
+/* 播放态：唱片变圆并旋转 */
+.aplayer.aplayer-playing .aplayer-pic {
+  border-radius: 50% !important;
+  animation: rotateCover 25s infinite linear !important;
+}
+
+/* 播放/暂停悬浮控制图标（移到右下角小尺寸） */
+.aplayer .aplayer-pic .aplayer-button {
+  bottom: 6px !important;
+  right: 6px !important;
+  left: auto !important;
+  top: auto !important;
+  width: 20px !important;
+  height: 20px !important;
+  margin: 0 !important;
+  background: rgba(255, 255, 255, 0.75) !important;
+  backdrop-filter: blur(4px) !important;
+  border: 1px solid rgba(255, 255, 255, 0.85) !important;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15) !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  border-radius: 50% !important;
+  opacity: 0.9 !important;
+  transition: all 0.2s ease !important;
+}
+
+.aplayer .aplayer-pic .aplayer-button:hover {
+  opacity: 1 !important;
+  transform: scale(1.15) !important;
+  background: #ffffff !important;
+  box-shadow: 0 0 8px rgba(161, 196, 253, 0.6) !important;
+}
+
+.aplayer .aplayer-pic .aplayer-button svg {
+  width: 10px !important;
+  height: 10px !important;
+  position: absolute !important;
+  top: 50% !important;
+  left: 50% !important;
+  transform: translate(-50%, -50%) !important;
+  fill: #8ec5fc !important;
+}
+
+.aplayer .aplayer-pic .aplayer-button.aplayer-play svg {
+  transform: translate(-40%, -50%) !important; /* 修正播放三角形偏心量 */
+}
+
+/* 2. 信息与控制大面板 */
+.aplayer.aplayer-fixed .aplayer-info {
+  height: 76px !important;
+  padding: 10px 20px 10px 15px !important;
+  flex-grow: 1 !important;
+  display: flex !important;
+  flex-direction: column !important;
+  justify-content: center !important;
+}
+
+/* 文字信息排版 */
+.aplayer .aplayer-info .aplayer-music {
+  margin-bottom: 6px !important;
+  display: flex !important;
+  align-items: baseline !important;
+  overflow: visible !important;
+  position: relative !important;
+  height: 18px !important;
+}
+
+/* 歌曲名字：放大、加粗、亮白 */
+.aplayer .aplayer-info .aplayer-music .aplayer-title {
+  font-size: 14.5px !important;
+  font-weight: 700 !important;
+  color: #ffffff !important;
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.2) !important;
+}
+
+/* 编曲作者：小字、弱化、透气 */
+.aplayer .aplayer-info .aplayer-music .aplayer-author {
+  font-size: 11px !important;
+  color: rgba(255, 255, 255, 0.7) !important;
+  margin-left: 10px !important;
+  font-weight: 400 !important;
+}
+
+/* CSS 气泡悬浮窗（磨砂玻璃风格展示完整歌曲信息） */
+.aplayer .aplayer-info .aplayer-music::after {
+  content: "🎵 " attr(data-title-full) !important;
+  position: absolute !important;
+  bottom: 100% !important;
+  left: 0 !important;
+  margin-bottom: 15px !important;
+  background: rgba(255, 255, 255, 0.38) !important;
+  backdrop-filter: blur(12px) !important;
+  -webkit-backdrop-filter: blur(12px) !important;
+  color: #ffffff !important;
+  padding: 6px 12px !important;
+  border-radius: 12px !important;
+  border: 1px solid rgba(255, 255, 255, 0.25) !important;
+  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.15) !important;
+  font-size: 11px !important;
+  font-weight: 500 !important;
+  white-space: nowrap !important;
+  opacity: 0 !important;
+  visibility: hidden !important;
+  transform: translateY(8px) !important;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+  z-index: 100000 !important;
+  pointer-events: none !important;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2) !important;
+}
+
+.aplayer .aplayer-info .aplayer-music:hover::after {
+  opacity: 1 !important;
+  visibility: visible !important;
+  transform: translateY(0) !important;
+}
+
+/* 3. 进度条区域 */
+.aplayer .aplayer-info .aplayer-controller .aplayer-bar-wrap {
+  margin-right: 15px !important;
+  padding: 4px 0 !important;
+}
+
+/* 进度轨道：低透灰 */
+.aplayer .aplayer-info .aplayer-controller .aplayer-bar-wrap .aplayer-bar {
+  background: rgba(255, 255, 255, 0.15) !important;
+  height: 4px !important;
+  border-radius: 2px !important;
+  transition: all 0.2s ease !important;
+}
+
+/* 已播放：二次元冷调浅蓝渐变 */
+.aplayer .aplayer-info .aplayer-controller .aplayer-bar-wrap .aplayer-bar .aplayer-played {
+  background: linear-gradient(90deg, #a1c4fd 0%, #c2e9fb 100%) !important;
+  height: 4px !important;
+  border-radius: 2px !important;
+}
+
+/* 滑动圆点：白色圆形发光微粒，Hover 放大 */
+.aplayer .aplayer-info .aplayer-controller .aplayer-bar-wrap .aplayer-bar .aplayer-played .aplayer-thumb {
+  background: #ffffff !important;
+  border: 1.5px solid #a1c4fd !important;
+  box-shadow: 0 0 6px rgba(161, 196, 253, 0.8) !important;
+  width: 10px !important;
+  height: 10px !important;
+  margin-top: -3px !important;
+  border-radius: 50% !important;
+  transform: scale(0.9) !important;
+  transition: all 0.2s ease-in-out !important;
+}
+
+.aplayer .aplayer-info .aplayer-controller .aplayer-bar-wrap .aplayer-bar:hover .aplayer-played .aplayer-thumb {
+  transform: scale(1.35) !important;
+  box-shadow: 0 0 10px rgba(161, 196, 253, 1) !important;
+}
+
+/* 4. 控制面板栏（时间、音量、循环等） */
+.aplayer .aplayer-info .aplayer-controller .aplayer-time {
+  font-size: 11px !important;
+  color: rgba(255, 255, 255, 0.6) !important;
+  display: flex !important;
+  align-items: center !important;
+}
+
+/* 图标简约线性，间距均匀，Hover 切换渐变色填充+发光，柔和缩放 */
+.aplayer .aplayer-info .aplayer-controller .aplayer-time .aplayer-icon {
+  width: 16px !important;
+  height: 16px !important;
+  margin-left: 12px !important;
+  opacity: 0.8 !important;
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1) !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+}
+
+.aplayer .aplayer-info .aplayer-controller .aplayer-time .aplayer-icon svg {
+  width: 14px !important;
+  height: 14px !important;
+}
+
+.aplayer .aplayer-info .aplayer-controller .aplayer-time .aplayer-icon path {
+  fill: rgba(255, 255, 255, 0.85) !important;
+  transition: fill 0.2s ease !important;
+}
+
+.aplayer .aplayer-info .aplayer-controller .aplayer-time .aplayer-icon:hover {
+  transform: scale(1.2) !important;
+  opacity: 1 !important;
+  filter: drop-shadow(0 0 4px rgba(161, 196, 253, 0.8)) !important;
+}
+
+.aplayer .aplayer-info .aplayer-controller .aplayer-time .aplayer-icon:hover path {
+  fill: #c2e9fb !important;
+}
+
+.aplayer .aplayer-info .aplayer-controller .aplayer-time .aplayer-icon:active {
+  transform: scale(0.9) !important;
+}
+
+/* 5. 音量滑出式横向控制条 */
+.aplayer .aplayer-info .aplayer-controller .aplayer-time .aplayer-volume-wrap {
+  position: relative !important;
+  display: inline-flex !important;
+  align-items: center !important;
+}
+
+/* 音量槽过渡 */
+.aplayer .aplayer-info .aplayer-controller .aplayer-time .aplayer-volume-wrap .aplayer-volume-bar-wrap {
+  position: static !important;
+  width: 0 !important;
+  height: 30px !important;
+  overflow: hidden !important;
+  transition: width 0.3s cubic-bezier(0.4, 0, 0.2, 1), margin-left 0.3s ease !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  background: transparent !important;
+  box-shadow: none !important;
+  margin-left: 0 !important;
+  padding: 0 !important;
+}
+
+/* 音量按钮悬停，向右滑出 */
+.aplayer .aplayer-info .aplayer-controller .aplayer-time .aplayer-volume-wrap:hover .aplayer-volume-bar-wrap {
+  width: 60px !important;
+  margin-left: 6px !important;
+}
+
+.aplayer .aplayer-info .aplayer-controller .aplayer-time .aplayer-volume-wrap .aplayer-volume-bar-wrap .aplayer-volume-bar {
+  width: 50px !important;
+  height: 4px !important;
+  bottom: auto !important;
+  left: auto !important;
+  background: rgba(255, 255, 255, 0.15) !important;
+  border-radius: 2px !important;
+}
+
+.aplayer .aplayer-info .aplayer-controller .aplayer-time .aplayer-volume-wrap .aplayer-volume-bar-wrap .aplayer-volume-bar .aplayer-volume {
+  height: 100% !important;
+  background: linear-gradient(90deg, #a1c4fd 0%, #c2e9fb 100%) !important;
+  border-radius: 2px !important;
+}
+
+/* 6. 播放列表：浮于播放器正上方，磨砂透明面板 */
+.aplayer.aplayer-fixed .aplayer-list {
+  left: 50% !important;
+  transform: translateX(-50%) !important;
+  width: 540px !important;
+  max-width: calc(100% - 40px) !important;
+  bottom: 86px !important; /* 挂浮在舱体之上 */
+  background: rgba(255, 255, 255, 0.38) !important;
+  backdrop-filter: blur(12px) !important;
+  -webkit-backdrop-filter: blur(12px) !important;
+  border-radius: 16px !important;
+  border: 1px solid rgba(255, 255, 255, 0.25) !important;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.15) !important;
+  overflow: hidden !important;
+}
+
+.aplayer .aplayer-list ol li {
+  border-top: 1px solid rgba(255, 255, 255, 0.1) !important;
+  background: transparent !important;
+  color: #ffffff !important;
+  font-size: 12px !important;
+  transition: all 0.2s ease !important;
+}
+
+/* 正在播放歌曲高亮行 */
+.aplayer .aplayer-list ol li.aplayer-list-light {
+  background: rgba(161, 196, 253, 0.2) !important;
+}
+
+.aplayer .aplayer-list ol li:hover {
+  background: rgba(161, 196, 253, 0.1) !important;
+}
+
+.aplayer .aplayer-list ol li .aplayer-list-index {
+  color: rgba(255, 255, 255, 0.6) !important;
+}
+
+.aplayer .aplayer-list ol li .aplayer-list-author {
+  color: rgba(255, 255, 255, 0.5) !important;
+}
+
+/* =======================================================
+   APlayer 暗色模式支持
+   ======================================================= */
+[data-theme='dark'] .aplayer.aplayer-fixed,
+[data-theme='dark'] .aplayer.aplayer-fixed .aplayer-list {
+  background: rgba(20, 20, 20, 0.38) !important;
+  border: 1px solid rgba(255, 255, 255, 0.05) !important;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2), 0 16px 32px rgba(0, 0, 0, 0.4) !important;
+}
+
+[data-theme='dark'] .aplayer .aplayer-info .aplayer-controller .aplayer-time .aplayer-volume-wrap .aplayer-volume-bar-wrap .aplayer-volume-bar,
+[data-theme='dark'] .aplayer .aplayer-info .aplayer-controller .aplayer-bar-wrap .aplayer-bar {
+  background: rgba(255, 255, 255, 0.08) !important;
+}
+
+[data-theme='dark'] .aplayer .aplayer-info .aplayer-music::after {
+  background: rgba(20, 20, 20, 0.6) !important;
+  border: 1px solid rgba(255, 255, 255, 0.05) !important;
+}
+
+[data-theme='dark'] .aplayer .aplayer-list ol li {
+  border-top: 1px solid rgba(255, 255, 255, 0.05) !important;
+}
+
+/* =======================================================
+   APlayer 移动端响应式布局自适应缩小
+   ======================================================= */
+@media (max-width: 768px) {
+  .aplayer.aplayer-fixed {
+    width: 320px !important;
+    max-width: calc(100% - 20px) !important;
+    bottom: 12px !important;
+    height: 66px !important;
+    border-radius: 33px !important;
+  }
+  
+  .aplayer.aplayer-fixed .aplayer-pic {
+    width: 66px !important;
+    height: 66px !important;
+  }
+  
+  .aplayer.aplayer-fixed .aplayer-info {
+    height: 66px !important;
+    padding: 6px 12px !important;
+  }
+  
+  .aplayer.aplayer-fixed .aplayer-list {
+    width: 320px !important;
+    max-width: calc(100% - 20px) !important;
+    bottom: 72px !important;
+  }
+  
+  .aplayer .aplayer-info .aplayer-controller .aplayer-time .aplayer-volume-wrap {
+    display: none !important; /* 移动端隐藏音量槽 */
+  }
+  
+  .aplayer .aplayer-info .aplayer-controller .aplayer-bar-wrap {
+    margin-right: 8px !important;
+  }
+}

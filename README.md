@@ -2,7 +2,7 @@
 
 > 记录学习，热爱技术，向着全栈和 AI Agent 方向努力。
 
-个人技术博客，基于 [Hexo](https://hexo.io/) 构建，使用 [Butterfly](https://butterfly.js.org/) 主题，部署于 [GitHub Pages](https://hunter007.github.io)。
+个人技术博客，基于 [Hexo](https://hexo.io/) 构建，使用 [Butterfly](https://butterfly.js.org/) 主题，部署于 [GitHub Pages](https://hunter-007-1.github.io/)。
 
 ## 技术栈
 
@@ -51,7 +51,11 @@ npm run server
 npm run build
 ```
 
-### 部署到 GitHub Pages
+### 自动部署到 GitHub Pages
+
+向 `main` 分支提交文章或配置后，GitHub Actions 会自动构建并发布网站，无需在本地运行部署命令。
+
+### 手动部署（备用）
 
 ```bash
 npm run deploy

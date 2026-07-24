@@ -531,3 +531,213 @@ html::-webkit-scrollbar {
     margin-right: 8px !important;
   }
 }
+
+/* =======================================================
+   Mobile-first layout: keep the desktop glass style while making every
+   primary reading surface comfortable on a phone.
+   ======================================================= */
+@media (max-width: 768px) {
+  :root {
+    --phone-gutter: 14px;
+  }
+
+  html,
+  body {
+    overflow-x: hidden;
+  }
+
+  #page-header {
+    min-height: 300px;
+  }
+
+  #page-header.full_page {
+    min-height: 100svh;
+  }
+
+  #site-info {
+    padding: 0 22px;
+  }
+
+  #site-info #site-title {
+    font-size: clamp(2rem, 10vw, 2.8rem) !important;
+    line-height: 1.15;
+  }
+
+  #site-info #site-subtitle,
+  #site-info #subtitle {
+    font-size: 0.98rem;
+    line-height: 1.7;
+  }
+
+  #nav {
+    padding: 0 12px !important;
+  }
+
+  #nav #site-name {
+    max-width: calc(100vw - 116px);
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  #content-outer,
+  #content-inner {
+    width: 100%;
+  }
+
+  #content-inner {
+    padding: 0 var(--phone-gutter);
+  }
+
+  #content-inner > #page,
+  #content-inner > #post,
+  #content-inner > #archive,
+  #content-inner > #tag-cloud,
+  .card-widget,
+  .recent-post-item {
+    border-radius: 14px !important;
+  }
+
+  #content-inner > #page,
+  #content-inner > #post,
+  #content-inner > #archive,
+  #content-inner > #tag-cloud {
+    width: 100%;
+    margin: 0 auto 16px !important;
+    padding: 22px 18px !important;
+  }
+
+  #recent-posts > .recent-post-item {
+    display: flex !important;
+    flex-direction: column !important;
+    min-height: 0 !important;
+    margin-bottom: 16px !important;
+  }
+
+  #recent-posts > .recent-post-item > .post_cover,
+  #recent-posts > .recent-post-item:nth-child(2n) > .post_cover {
+    order: 0;
+    width: 100% !important;
+    height: 190px !important;
+    border-radius: 14px 14px 0 0 !important;
+  }
+
+  #recent-posts > .recent-post-item > .recent-post-info,
+  #recent-posts > .recent-post-item:nth-child(2n) > .recent-post-info {
+    order: 1;
+    width: 100% !important;
+    padding: 18px 16px 20px !important;
+  }
+
+  .recent-post-item .article-title {
+    font-size: 1.22rem;
+    line-height: 1.45;
+  }
+
+  .recent-post-item .content {
+    -webkit-line-clamp: 3;
+    line-height: 1.75;
+  }
+
+  #aside-content {
+    padding: 0 var(--phone-gutter);
+  }
+
+  #aside-content .card-widget {
+    margin-bottom: 14px;
+  }
+
+  #post,
+  #page {
+    font-size: 1rem;
+    line-height: 1.85;
+  }
+
+  #post .post-content,
+  #page .post-content {
+    overflow-wrap: anywhere;
+    word-break: break-word;
+  }
+
+  #post .post-content img,
+  #page .post-content img,
+  #post .post-content video,
+  #page .post-content video,
+  #post .post-content iframe,
+  #page .post-content iframe {
+    max-width: 100% !important;
+    height: auto;
+  }
+
+  #post .post-content pre,
+  #page .post-content pre,
+  #post .post-content table,
+  #page .post-content table {
+    display: block;
+    max-width: 100%;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  #post .post-content pre,
+  #page .post-content pre {
+    padding: 14px !important;
+    font-size: 0.82rem;
+  }
+
+  .card-widget:hover,
+  .recent-post-item:hover,
+  #content-inner > #page:hover,
+  #content-inner > #post:hover {
+    transform: none;
+  }
+
+  #waifu {
+    display: none !important;
+  }
+
+  .aplayer.aplayer-fixed {
+    left: 12px !important;
+    right: 12px !important;
+    transform: none !important;
+    width: auto !important;
+    max-width: none !important;
+    bottom: max(10px, env(safe-area-inset-bottom)) !important;
+  }
+
+  .aplayer.aplayer-fixed .aplayer-list {
+    left: 12px !important;
+    right: 12px !important;
+    transform: none !important;
+    width: auto !important;
+    max-width: none !important;
+    bottom: 82px !important;
+  }
+
+  .aplayer .aplayer-info .aplayer-music::after {
+    display: none !important;
+  }
+}
+
+@media (max-width: 380px) {
+  #content-inner > #page,
+  #content-inner > #post,
+  #content-inner > #archive,
+  #content-inner > #tag-cloud {
+    padding: 18px 14px !important;
+  }
+
+  #recent-posts > .recent-post-item > .post_cover,
+  #recent-posts > .recent-post-item:nth-child(2n) > .post_cover {
+    height: 165px !important;
+  }
+
+  .aplayer.aplayer-fixed .aplayer-pic {
+    width: 58px !important;
+    height: 58px !important;
+  }
+
+  .aplayer.aplayer-fixed .aplayer-info {
+    padding-right: 8px !important;
+  }
+}

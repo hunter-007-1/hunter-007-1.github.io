@@ -10,7 +10,7 @@ keywords: Java、Agent、AI
 author: Iron
 language: zh-CN
 timezone: Asia/Shanghai
-url: https://hunter007.github.io
+url: https://hunter-007-1.github.io
 root: / 
 # URL
 ## Set your site url here. For example, if you use GitHub Page, set url as 'https://username.github.io/project'
@@ -103,7 +103,7 @@ theme: butterfly
 deploy:
   type: git
   repo: git@github.com:hunter-007-1/hunter-007-1.github.io.git
-  branch: main
+  branch: gh-pages
 
 # Local Search Configuration
 search:
@@ -111,4 +111,3 @@ search:
   field: post
   content: true
   format: striptags
-
